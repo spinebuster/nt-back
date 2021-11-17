@@ -1,24 +1,61 @@
-# README
+##### Prerequisites
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The setups steps expect following tools installed on the system.
 
-Things you may want to cover:
+- Github
+- Ruby [3.0.2](https://github.com/spinebuster/nt-back/blob/main/.ruby-version#L1)
+- Rails [6.1.4.1](https://github.com/spinebuster/nt-back/blob/main/Gemfile#L7)
 
-* Ruby version
+##### 1. Check out the repository
 
-* System dependencies
+```bash
+git clone git@github.com:spinebuster/nt-back.git
+```
 
-* Configuration
+##### 2. Create database.yml file
 
-* Database creation
+Copy the sample database.yml file and edit the database configuration as required.
 
-* Database initialization
+```bash
+cp config/database.yml.sample config/database.yml
+```
 
-* How to run the test suite
+##### 3. Create and setup the database
 
-* Services (job queues, cache servers, search engines, etc.)
+Run the following command to create and setup the database.
 
-* Deployment instructions
+```bash
+make setup
+```
 
-* ...
+##### 4. Start the Rails server
+
+You can start the rails server using the command given below.
+
+```bash
+make start
+```
+
+And now you can visit the site
+
+##### 5. Test the application with RSpec
+
+You can run the suite of test as follows. Run the following command to create and setup the database.
+
+```bash
+make setup_test
+```
+
+Run the following command to run the suite of test.
+
+```bash
+make test
+```
+
+##### Check Makefile
+
+Project comes with a bunch a tools that can be checked within the Makefile file. Please check the help prompt with the following command.
+
+```bash
+make help
+```
