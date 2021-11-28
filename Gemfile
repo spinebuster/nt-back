@@ -29,7 +29,7 @@ gem "pagy", "~> 5.1"
 # its lifecycle, revert it to any version, or restore it after it has been destroyed.
 gem "paper_trail"
 # Ransack enables the creation of both simple and advanced search forms for your Ruby on Rails application
-gem "ransack", github: "activerecord-hackery/ransack"
+gem "ransack" # , github: "activerecord-hackery/ransack"
 # A set of tools to make the Sorbet typechecker work with Ruby on Rails seamlessly.
 gem "sorbet-rails"
 
@@ -75,7 +75,7 @@ group :test do
   # factory_bot is a fixtures replacement with a straightforward definition syntax
   gem "factory_bot_rails"
   # This gem is a port of Perl's Data::Faker library that generates fake data.
-  gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "master"
+  gem "faker" # , git: "https://github.com/faker-ruby/faker.git", branch: "master"
   # SimpleCov is a code coverage analysis tool for Ruby.
   gem "simplecov"
   # Shoulda Matchers provides RSpec- and Minitest-compatible one-liners to test common Rails functionality that, if
