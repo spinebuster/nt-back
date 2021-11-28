@@ -28,4 +28,8 @@
 # Ignore database configuration
 /config/database.yml
 
+# Ignore .env files with specific info
+.env-app
+.env-db
+
 /coverage

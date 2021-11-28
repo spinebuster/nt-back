@@ -5,9 +5,8 @@ services:
     restart: always
     volumes:
       -  mysqldata:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: app
+    env_file:
+      - .env-db
     expose:
       - "4003"
     ports:
@@ -25,10 +24,8 @@ services:
       - db
     links:
       - db
-    environment:
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_HOST: db
+    env_file:
+      - .env-app
 
 volumes:
   bundle_gems:
