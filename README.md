@@ -31,8 +31,8 @@ The setups steps expect following tools installed on the system.
 - Github
 - Ruby [3.0.2](https://github.com/spinebuster/nt-back/blob/main/.ruby-version#L1)
 - Rails [6.1.4.1](https://github.com/spinebuster/nt-back/blob/main/Gemfile#L7)
-- Docker [20.10.11]
-- docker-compose [1.25.3]
+- Docker 20.10.11
+- docker-compose 1.25.3
 
 ##### 1. Check out the repository
 
