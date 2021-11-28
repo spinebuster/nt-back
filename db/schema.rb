@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_10_31_124148) do
 
-  create_table "discounts", charset: "utf8mb3", force: :cascade do |t|
+  create_table "discounts", charset: "utf8", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.datetime "date_start", null: false
     t.datetime "date_end", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_10_31_124148) do
     t.index ["product_id"], name: "index_discounts_on_product_id"
   end
 
-  create_table "order_products", charset: "utf8mb3", force: :cascade do |t|
+  create_table "order_products", charset: "utf8", force: :cascade do |t|
     t.bigint "order_id", null: false
     t.bigint "product_id", null: false
     t.datetime "date", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_10_31_124148) do
     t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
-  create_table "orders", charset: "utf8mb3", force: :cascade do |t|
+  create_table "orders", charset: "utf8", force: :cascade do |t|
     t.datetime "date", null: false
     t.integer "code", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2021_10_31_124148) do
     t.index ["date"], name: "index_orders_on_code"
   end
 
-  create_table "prices", charset: "utf8mb3", force: :cascade do |t|
+  create_table "prices", charset: "utf8", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.datetime "date", null: false
     t.float "price", null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_10_31_124148) do
     t.index ["product_id"], name: "index_prices_on_product_id"
   end
 
-  create_table "products", charset: "utf8mb3", force: :cascade do |t|
+  create_table "products", charset: "utf8", force: :cascade do |t|
     t.string "code", null: false
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_10_31_124148) do
     t.index ["code"], name: "index_products_on_code", unique: true
   end
 
-  create_table "versions", charset: "utf8mb4", collation: "utf8mb4_general_ci", force: :cascade do |t|
+  create_table "versions", charset: "utf8mb4", force: :cascade do |t|
     t.string "item_type"
     t.string "{:null=>false, :limit=>191}"
     t.bigint "item_id", null: false
