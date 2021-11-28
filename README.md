@@ -31,6 +31,8 @@ The setups steps expect following tools installed on the system.
 - Github
 - Ruby [3.0.2](https://github.com/spinebuster/nt-back/blob/main/.ruby-version#L1)
 - Rails [6.1.4.1](https://github.com/spinebuster/nt-back/blob/main/Gemfile#L7)
+- Docker [20.10.11]
+- docker-compose [1.25.3]
 
 ##### 1. Check out the repository
 
@@ -38,7 +40,16 @@ The setups steps expect following tools installed on the system.
 git clone git@github.com:spinebuster/nt-back.git
 ```
 
-##### 2. Create database.yml file
+##### 3. Create .env files with database connection config
+
+Copy the samples .env-app and .env-db files and edit the values of the ENV variables.
+
+```bash
+cp .env-app.sample cp .env-app
+cp .env-db.sample cp .env-db
+```
+
+##### 3. Create database.yml file
 
 Copy the sample database.yml file and edit the database configuration as required.
 
@@ -46,7 +57,15 @@ Copy the sample database.yml file and edit the database configuration as require
 cp config/database.yml.sample config/database.yml
 ```
 
-##### 3. Create and setup the database
+##### 5. Build Docker container
+
+Run the following command to build the Docker container with everthing needed to run the project.
+
+```bash
+make build
+```
+
+##### 5. Create and setup the database
 
 Run the following command to create and setup the database including some seeds.
 
@@ -54,7 +73,7 @@ Run the following command to create and setup the database including some seeds.
 make setup
 ```
 
-##### 4. Start the Rails server
+##### 6. Start the Rails server
 
 You can start the rails server using the command given below.
 
@@ -65,7 +84,7 @@ make start
 And now you can visit the site. Root path redirects to the index of products so that is the first
 sniff of NtBack. Feel free to check different request according to the RESTful architecture.
 
-##### 5. Test the application with RSpec
+##### 7. Test the application with RSpec
 
 You can run the suite of test as follows. Run the following command to create and setup the database.
 
