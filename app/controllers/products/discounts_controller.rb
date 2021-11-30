@@ -1,5 +1,5 @@
 module Products
-  # This is the PricesController class
+  # This is the DiscountsController class
   class DiscountsController < Products::ApplicationController
     def index
       emitter_format Products::Discounts::IndexService

@@ -37,11 +37,13 @@ ActiveRecord::Schema.define(version: 2021_10_31_124148) do
   end
 
   create_table "orders", charset: "utf8", force: :cascade do |t|
+    t.bigint "store_id", null: false
     t.datetime "date", null: false
     t.integer "code", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["date"], name: "index_orders_on_code"
+    t.index ["store_id"], name: "index_orders_on_store_id"
   end
 
   create_table "prices", charset: "utf8", force: :cascade do |t|
@@ -60,6 +62,17 @@ ActiveRecord::Schema.define(version: 2021_10_31_124148) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["code"], name: "index_products_on_code", unique: true
+  end
+
+  create_table "stores", charset: "utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "address", null: false
+    t.string "email", null: false
+    t.string "phone", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_stores_on_email", unique: true
+    t.index ["name"], name: "index_stores_on_name"
   end
 
   create_table "versions", charset: "utf8mb4", force: :cascade do |t|

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Orders::CreateService, type: :model do
+RSpec.describe Stores::Orders::CreateService, type: :model do
   subject(:execution) { service.execute! }
 
   let(:products) do
@@ -22,9 +22,10 @@ RSpec.describe Orders::CreateService, type: :model do
       ),
     ]
   end
+  let(:store) { create(:store) }
   let(:service) do
     described_class.new(
-      nil,
+      store,
       order: {
         date: Faker::Date.backward(days: 14),
       },
@@ -38,7 +39,7 @@ RSpec.describe Orders::CreateService, type: :model do
 
   it "returns a successful record information" do
     expect(execution).to eql(
-      Order.last.as_api_response(:base),
+      store.orders.last.as_api_response(:base),
     )
   end
 end

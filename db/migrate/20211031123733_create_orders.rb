@@ -4,8 +4,9 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       :orders,
       options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8'
     ) do |t|
-      t.datetime :date,  null: false
-      t.integer  :code,  null: false
+      t.references :store, null: false
+      t.datetime   :date,  null: false
+      t.integer    :code,  null: false
       # Se puede pensar en que el precio sea un atributo de la orden y se
       # calcule automaticamente con cada insercción de un producto
       # t.float    :price, default: 0

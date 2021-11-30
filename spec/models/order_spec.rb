@@ -4,8 +4,12 @@ RSpec.describe Order, type: :model do
   describe "definition" do
     subject { order }
 
-    let(:order) { build(:order) }
+    let(:store) { create(:store) }
+    let(:order) do
+      build(:order, store: store)
+    end
 
+    it { is_expected.to belong_to(:store) }
     it { is_expected.to have_many(:order_products).dependent(:destroy) }
     it { is_expected.to have_many(:products).through(:order_products) }
 
@@ -13,8 +17,9 @@ RSpec.describe Order, type: :model do
   end
 
   describe "setting the code" do
+    let(:store) { create(:store) }
     let(:order) do
-      build(:order)
+      build(:order, store: store)
     end
 
     it { expect(order.code).not_to be_nil }
@@ -22,8 +27,9 @@ RSpec.describe Order, type: :model do
 
   describe "incremental code" do
     describe "first code should be one" do
+      let(:store) { create(:store) }
       let(:first_order) do
-        create(:order)
+        create(:order, store: store)
       end
 
       it { expect(first_order.code).to be(1) }
@@ -31,7 +37,7 @@ RSpec.describe Order, type: :model do
       describe "second order should be two" do
         let(:second_order) do
           first_order
-          create(:order)
+          create(:order, store: store)
         end
 
         it { expect(second_order.code).to be(2) }
@@ -40,6 +46,7 @@ RSpec.describe Order, type: :model do
   end
 
   describe "calculate price" do
+    let(:store) { create(:store) }
     let(:products) do
       [
         create(
@@ -109,7 +116,7 @@ RSpec.describe Order, type: :model do
         [products.first.id, products.second.id, products.third.id]
       end
       let(:order) do
-        described_class.create_with_products(order_products, Time.zone.today)
+        store.orders.create_with_products(order_products, Time.zone.today)
       end
 
       before do
@@ -125,7 +132,7 @@ RSpec.describe Order, type: :model do
         [products.first.id, products.second.id, products.first.id]
       end
       let(:order) do
-        described_class.create_with_products(order_products, Time.zone.today)
+        store.orders.create_with_products(order_products, Time.zone.today)
       end
 
       before do
@@ -144,7 +151,7 @@ RSpec.describe Order, type: :model do
         ]
       end
       let(:order) do
-        described_class.create_with_products(order_products, Time.zone.today)
+        store.orders.create_with_products(order_products, Time.zone.today)
       end
 
       before do
@@ -166,7 +173,7 @@ RSpec.describe Order, type: :model do
         ]
       end
       let(:order) do
-        described_class.create_with_products(order_products, Time.zone.today)
+        store.orders.create_with_products(order_products, Time.zone.today)
       end
 
       before do

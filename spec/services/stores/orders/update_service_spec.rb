@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Orders::UpdateService, type: :model do
+RSpec.describe Stores::Orders::UpdateService, type: :model do
   let(:new_date) { Faker::Date.backward(days: 14) }
   let(:products) do
     [
@@ -21,8 +21,11 @@ RSpec.describe Orders::UpdateService, type: :model do
       ),
     ]
   end
+  let(:store) { create(:store) }
   let(:order) do
-    Order.create_with_products(products.pluck(:id), Faker::Date.backward(days: 14))
+    store.orders.create_with_products(
+      products.pluck(:id), Faker::Date.backward(days: 14)
+    )
   end
 
   context "with valid attributes" do
@@ -30,7 +33,7 @@ RSpec.describe Orders::UpdateService, type: :model do
 
     let(:service) do
       described_class.new(
-        nil,
+        store,
         id: order.id,
         order: {
           date: new_date,
@@ -60,7 +63,7 @@ RSpec.describe Orders::UpdateService, type: :model do
 
     let(:service) do
       described_class.new(
-        nil,
+        store,
         id: order.id,
         order: {
           date: nil,

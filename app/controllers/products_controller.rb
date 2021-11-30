@@ -1,3 +1,4 @@
+# This is the ProductsController class
 class ProductsController < ApplicationController
   def index
     emitter_format Products::IndexService

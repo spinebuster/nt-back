@@ -1,8 +1,9 @@
 require "rails_helper"
 
 RSpec.describe OrderProduct, type: :model do
+  let(:store) { create(:store) }
   let(:product) { create(:product) }
-  let(:order) { create(:order) }
+  let(:order) { create(:order, store: store) }
 
   describe "definition" do
     subject { order_product }

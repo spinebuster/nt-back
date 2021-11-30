@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   has_paper_trail
 
   # Relations
+  belongs_to :store
   has_many :order_products, dependent: :destroy
   has_many :products, through: :order_products
 
@@ -30,7 +31,7 @@ class Order < ApplicationRecord
       date ||= Time.zone.today
 
       Order.transaction do
-        order = Order.create!(date: date)
+        order = create!(date: date)
         products&.each do |product|
           order.order_products.create!(product_id: product, date: date, code: order.code)
         end

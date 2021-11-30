@@ -1,15 +1,17 @@
 require "rails_helper"
 
-RSpec.describe OrdersController, ".create", type: :controller do
+RSpec.describe StoresController, ".create", type: :controller do
   context "with valid attributes" do
     it "returns a successful record information" do
       post(
         :create,
         params: {
-          order: {
-            date: Faker::Date.backward(days: 14),
+          store: {
+            name: Faker::Lorem.characters(number: 10),
+            address: Faker::Address.full_address,
+            email: Faker::Internet.email,
+            phone: Faker::PhoneNumber.phone_number,
           },
-          products_id: [],
           format: "json",
         },
       )
@@ -23,8 +25,8 @@ RSpec.describe OrdersController, ".create", type: :controller do
       post(
         :create,
         params: {
-          order: {
-            date: nil,
+          store: {
+            name: nil,
           },
           format: "json",
         },

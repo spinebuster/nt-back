@@ -1,7 +1,9 @@
 require "rails_helper"
 
-RSpec.describe Orders::IndexService, type: :model do
+RSpec.describe Stores::Orders::IndexService, type: :model do
   include Pagy::Backend
+
+  let(:store) { create(:store) }
 
   before do
     # Crear 2 products
@@ -11,7 +13,9 @@ RSpec.describe Orders::IndexService, type: :model do
 
     # Crear 35 orders
     @orders = (0..34).map do
-      Order.create_with_products(products.pluck(:id), Faker::Date.backward(days: 14))
+      store.orders.create_with_products(
+        products.pluck(:id), Faker::Date.backward(days: 14)
+      )
     end
   end
 
@@ -19,7 +23,7 @@ RSpec.describe Orders::IndexService, type: :model do
     subject(:execution) { service.execute! }
 
     let(:service) do
-      described_class.new(nil, items: 50)
+      described_class.new(store, items: 50)
     end
 
     it "returns total count of records" do
@@ -44,7 +48,7 @@ RSpec.describe Orders::IndexService, type: :model do
       subject(:execution) { service.execute! }
 
       let(:service) do
-        described_class.new(nil, page: 1)
+        described_class.new(store, page: 1)
       end
 
       it "returns total count of records" do
@@ -69,7 +73,7 @@ RSpec.describe Orders::IndexService, type: :model do
       subject(:execution) { service.execute! }
 
       let(:service) do
-        described_class.new(nil, page: 2)
+        described_class.new(store, page: 2)
       end
 
       it "returns total count of records" do

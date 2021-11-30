@@ -1,11 +1,12 @@
 require "rails_helper"
 
-RSpec.describe Orders::ShowService, type: :model do
+RSpec.describe Stores::Orders::ShowService, type: :model do
   subject(:execution) { service.execute! }
 
-  let(:order) { create(:order) }
+  let(:store) { create(:store) }
+  let(:order) { create(:order, store: store) }
   let(:service) do
-    described_class.new(nil, id: order.id)
+    described_class.new(store, id: order.id)
   end
 
   it "returns a successful order information" do

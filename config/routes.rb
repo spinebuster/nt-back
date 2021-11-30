@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :orders,   only: %i[index create show update destroy]
-
   resources :products, only: %i[index create show update destroy] do
     resources(
       :discounts,
@@ -13,6 +11,14 @@ Rails.application.routes.draw do
       :prices,
       only: %i[index create show update destroy],
       controller: "products/prices",
+    )
+  end
+
+  resources :stores, only: %i[index create show update destroy] do
+    resources(
+      :orders,
+      only: %i[index create show update destroy],
+      controller: "stores/orders",
     )
   end
 

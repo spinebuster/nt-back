@@ -1,17 +1,17 @@
 require "rails_helper"
 
 RSpec.describe(
-  Products::PricesController, ".destroy", type: :controller
+  Stores::OrdersController, ".destroy", type: :controller
 ) do
-  let(:product) { create(:product) }
-  let(:price) { create(:price, product: product) }
+  let(:store) { create(:store) }
+  let(:order) { create(:order, store: store) }
 
   it "returns a successful record information" do
     delete(
       :destroy,
       params: {
-        product_id: product.id,
-        id: price.id,
+        store_id: store.id,
+        id: order.id,
         format: "json",
       },
     )

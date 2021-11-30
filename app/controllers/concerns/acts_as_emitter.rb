@@ -4,7 +4,7 @@ module ActsAsEmitter
   extend ::ActiveSupport::Concern
 
   def emitter_format(service)
-    @data = service.new(main_object, current_params).execute!
+    @data = service.execute!(main_object, current_params)
     respond_to do |format|
       format.json do
         render_json

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe OrdersController, ".index", type: :controller do
+RSpec.describe StoresController, ".index", type: :controller do
   it "returns a successful record information" do
     get(
       :index,

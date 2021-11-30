@@ -1,25 +1,25 @@
 require "rails_helper"
 
-RSpec.describe Orders::DestroyService, type: :model do
-  let(:order) { create(:order) }
+RSpec.describe Stores::DestroyService, type: :model do
+  let(:store) { create(:store) }
   let(:service) do
-    described_class.new(nil, id: order.id)
+    described_class.new(nil, id: store.id)
   end
 
   context "with existing record" do
     subject(:execution) { service.execute! }
 
     before do
-      # Ensure the order is created before running tests
-      order
+      # Ensure the store is created before running tests
+      store
     end
 
     it "destroys the record" do
-      expect { execution }.to change(Order, :count).by(-1)
+      expect { execution }.to change(Store, :count).by(-1)
     end
 
     it "returns the record information" do
-      expect(execution).to eql(order.as_api_response(:base))
+      expect(execution).to eql(store.as_api_response(:base))
     end
     # with existing record
   end
@@ -28,7 +28,7 @@ RSpec.describe Orders::DestroyService, type: :model do
     subject(:execution) { service.execute! }
 
     before do
-      order.destroy
+      store.destroy
     end
 
     it "raises an error" do

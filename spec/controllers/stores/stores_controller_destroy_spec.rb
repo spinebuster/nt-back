@@ -1,15 +1,13 @@
 require "rails_helper"
 
-RSpec.describe(
-  Products::PricesController, ".index", type: :controller
-) do
-  let(:product) { create(:product) }
+RSpec.describe StoresController, ".destroy", type: :controller do
+  let(:store) { create(:store) }
 
   it "returns a successful record information" do
-    get(
-      :index,
+    delete(
+      :destroy,
       params: {
-        product_id: product.id,
+        id: store.id,
         format: "json",
       },
     )

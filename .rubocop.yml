@@ -192,3 +192,6 @@ RSpec/InstanceVariable:
 
 RSpec/ExampleLength:
   Max: 15
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 6

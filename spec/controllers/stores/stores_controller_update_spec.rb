@@ -1,16 +1,16 @@
 require "rails_helper"
 
-RSpec.describe OrdersController, ".update", type: :controller do
-  let(:order) { create(:order) }
+RSpec.describe StoresController, ".update", type: :controller do
+  let(:store) { create(:store) }
 
   context "with valid attributes" do
     it "returns a successful record information" do
       put(
         :update,
         params: {
-          id: order.id,
-          order: {
-            date: Faker::Date.backward(days: 14),
+          id: store.id,
+          store: {
+            address: Faker::Address.full_address,
           },
           format: "json",
         },
@@ -25,9 +25,9 @@ RSpec.describe OrdersController, ".update", type: :controller do
       put(
         :update,
         params: {
-          id: order.id,
-          order: {
-            date: nil,
+          id: store.id,
+          store: {
+            address: nil,
           },
           format: "json",
         },
